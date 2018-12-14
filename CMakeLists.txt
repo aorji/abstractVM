@@ -18,4 +18,4 @@ add_executable(1
         exemple2.avm
         exemple3.avm
         Makefile
-        toRemember src/Operand.cpp src/Operand.cpp)
+        toRemember src/Operand.cpp)

@@ -4,8 +4,10 @@
 #include <iostream>
 
 #include "../inc/Operand.hpp"
-#include "../inc/Factory.hpp"
+//#include "../inc/Factory.hpp"
 
 int main(){
     std::cout << "Hello" << std::endl;
+
+    Operand a(13, 2, 1);
 }

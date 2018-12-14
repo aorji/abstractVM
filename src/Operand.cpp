@@ -2,9 +2,20 @@
 // Created by Anastasiia ORJI on 12/14/18.
 //
 
-#include "Operand.hpp"
+#include "../inc/Operand.hpp"
 
-Operand::Operand(std::string const &value): dataStr_(value) { }
+Operand::Operand( std::string const & value, eOperandType type, int precision ):
+    dataStr_(value),
+    type_(type),
+    precision_(precision){
+
+    try {
+        data_ = std::stod(value);
+    }
+    catch (std::exception &e) {}
+    std::cout << e.what() << std::endl;
+
+}
 
 Operand::~Operand() { }
 
