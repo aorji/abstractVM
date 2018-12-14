@@ -1,9 +1,11 @@
+//
+// Created by Anastasiia ORJI on 13/12/2018.
+//
 #include <iostream>
-#include "IOperand.hpp"
-#include "Float.hpp"
+
+#include "../inc/Operand.hpp"
+#include "../inc/Factory.hpp"
 
 int main(){
     std::cout << "Hello" << std::endl;
-    Factory f = Factory(int8, 3);
-    std::cout << f->ptrOperand->getType()
 }

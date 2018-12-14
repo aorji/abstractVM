@@ -1,3 +1,6 @@
+//
+// Created by Anastasiia ORJI on 13/12/2018.
+//
 #ifndef FACTORY_HPP
 #define FACTORY_HPP
 
@@ -8,10 +11,8 @@
 class Factory {
 
 public:
-	Factory( eOperandType type, std::string const & value ){
-		ptrOperand = IOperand::createOperand(type, value);
-	}
-    static IOperand const * createOperand( eOperandType type, std::string const & value ) const;
+    Factory();
+    IOperand const * createOperand( eOperandType type, std::string const & value ) const;
 
 private:
     IOperand const * createInt8( std::string const & value ) const;
@@ -20,7 +21,7 @@ private:
     IOperand const * createFloat( std::string const & value ) const;
     IOperand const * createDouble( std::string const & value ) const;
 
-    IOperand *ptrOperand;
+    std::vector<IOperand const* (Factory::*)( std::string const & value ) const> creator;
 
 };
 

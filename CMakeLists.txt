@@ -1,6 +1,21 @@
 cmake_minimum_required(VERSION 3.12)
-project(abstractVM)
+project(1)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
-add_executable(abstractVM src/main.cpp src/Factory.cpp inc/Factory.hpp)
+include_directories(inc)
+
+add_executable(1
+        inc/Exception.hpp
+        inc/Factory.hpp
+        inc/IOperand.hpp
+        inc/Operand.hpp
+        src/Exception.cpp
+        src/Factory.cpp
+        src/main.cpp
+        abstract-vm.en.pdf
+        exemple.avm
+        exemple2.avm
+        exemple3.avm
+        Makefile
+        toRemember src/Operand.cpp src/Operand.cpp)

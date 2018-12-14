@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/aorji/CLionProjects/abstractVM
+CMAKE_SOURCE_DIR = /Users/aorji/Desktop/1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/aorji/CLionProjects/abstractVM/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/aorji/Desktop/1/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aorji/CLionProjects/abstractVM/cmake-build-debug/CMakeFiles /Users/aorji/CLionProjects/abstractVM/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aorji/Desktop/1/cmake-build-debug/CMakeFiles /Users/aorji/Desktop/1/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aorji/CLionProjects/abstractVM/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aorji/Desktop/1/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named abstractVM
+# Target rules for targets named 1
 
 # Build rule for target.
-abstractVM: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 abstractVM
-.PHONY : abstractVM
+1 : cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 1
+.PHONY : 1
 
 # fast build rule for target.
-abstractVM/fast:
-	$(MAKE) -f CMakeFiles/abstractVM.dir/build.make CMakeFiles/abstractVM.dir/build
-.PHONY : abstractVM/fast
+1/fast:
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/build
+.PHONY : 1/fast
+
+src/Exception.o: src/Exception.cpp.o
+
+.PHONY : src/Exception.o
+
+# target to build an object file
+src/Exception.cpp.o:
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Exception.cpp.o
+.PHONY : src/Exception.cpp.o
+
+src/Exception.i: src/Exception.cpp.i
+
+.PHONY : src/Exception.i
+
+# target to preprocess a source file
+src/Exception.cpp.i:
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Exception.cpp.i
+.PHONY : src/Exception.cpp.i
+
+src/Exception.s: src/Exception.cpp.s
+
+.PHONY : src/Exception.s
+
+# target to generate assembly for a file
+src/Exception.cpp.s:
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Exception.cpp.s
+.PHONY : src/Exception.cpp.s
 
 src/Factory.o: src/Factory.cpp.o
 
@@ -129,7 +156,7 @@ src/Factory.o: src/Factory.cpp.o
 
 # target to build an object file
 src/Factory.cpp.o:
-	$(MAKE) -f CMakeFiles/abstractVM.dir/build.make CMakeFiles/abstractVM.dir/src/Factory.cpp.o
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Factory.cpp.o
 .PHONY : src/Factory.cpp.o
 
 src/Factory.i: src/Factory.cpp.i
@@ -138,7 +165,7 @@ src/Factory.i: src/Factory.cpp.i
 
 # target to preprocess a source file
 src/Factory.cpp.i:
-	$(MAKE) -f CMakeFiles/abstractVM.dir/build.make CMakeFiles/abstractVM.dir/src/Factory.cpp.i
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Factory.cpp.i
 .PHONY : src/Factory.cpp.i
 
 src/Factory.s: src/Factory.cpp.s
@@ -147,8 +174,35 @@ src/Factory.s: src/Factory.cpp.s
 
 # target to generate assembly for a file
 src/Factory.cpp.s:
-	$(MAKE) -f CMakeFiles/abstractVM.dir/build.make CMakeFiles/abstractVM.dir/src/Factory.cpp.s
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Factory.cpp.s
 .PHONY : src/Factory.cpp.s
+
+src/Operand.o: src/Operand.cpp.o
+
+.PHONY : src/Operand.o
+
+# target to build an object file
+src/Operand.cpp.o:
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Operand.cpp.o
+.PHONY : src/Operand.cpp.o
+
+src/Operand.i: src/Operand.cpp.i
+
+.PHONY : src/Operand.i
+
+# target to preprocess a source file
+src/Operand.cpp.i:
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Operand.cpp.i
+.PHONY : src/Operand.cpp.i
+
+src/Operand.s: src/Operand.cpp.s
+
+.PHONY : src/Operand.s
+
+# target to generate assembly for a file
+src/Operand.cpp.s:
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Operand.cpp.s
+.PHONY : src/Operand.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -156,7 +210,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/abstractVM.dir/build.make CMakeFiles/abstractVM.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -165,7 +219,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/abstractVM.dir/build.make CMakeFiles/abstractVM.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -174,7 +228,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/abstractVM.dir/build.make CMakeFiles/abstractVM.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -185,10 +239,16 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... abstractVM"
+	@echo "... 1"
+	@echo "... src/Exception.o"
+	@echo "... src/Exception.i"
+	@echo "... src/Exception.s"
 	@echo "... src/Factory.o"
 	@echo "... src/Factory.i"
 	@echo "... src/Factory.s"
+	@echo "... src/Operand.o"
+	@echo "... src/Operand.i"
+	@echo "... src/Operand.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

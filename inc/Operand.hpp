@@ -1,8 +1,10 @@
+//
+// Created by Anastasiia ORJI on 13/12/2018.
+//
 #ifndef OPERAND_HPP
 #define OPERAND_HPP
 
 #include "IOperand.hpp"
-#include <string>
 
 template <typename T>
 
@@ -10,19 +12,25 @@ class Operand: public IOperand {
 
 public:
 
-	Operand( std::string const & value );
-   int getPrecision( void ) const = 0; // Precision of the type of the instance
-    eOperandType getType( void ) const = 0; // Type of the instance
+    explicit Operand( std::string const & value );
+	int getPrecision( void ) const; // Precision of the type of the instance
+	eOperandType getType( void ) const; // Type of the instance
 
-   IOperand const * operator+( IOperand const & rhs ) const = 0; // Sum
-   IOperand const * operator-( IOperand const & rhs ) const = 0; // Difference
-   IOperand const * operator*( IOperand const & rhs ) const = 0; // Product
-   IOperand const * operator/( IOperand const & rhs ) const = 0; // Quotient
-   IOperand const * operator%( IOperand const & rhs ) const = 0; // Modulo
+	IOperand const * operator+( IOperand const & rhs ) const; // Sum
+	IOperand const * operator-( IOperand const & rhs ) const; // Difference
+	IOperand const * operator*( IOperand const & rhs ) const; // Product
+	IOperand const * operator/( IOperand const & rhs ) const; // Quotient
+	IOperand const * operator%( IOperand const & rhs ) const; // Modulo
 
-   std::string const & toString( void ) const = 0; // String representation of the instance
+	std::string const & toString( void ) const; // String representation of the instance
 
-    virtual ~Operand( void ) {}
+	virtual ~Operand( void ) {}
+
+private:
+    T               data_;
+    std::string     dataStr_;
+    eOperandType    type_;
+    int             precision_;
 };
 
 #endif

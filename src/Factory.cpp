@@ -4,33 +4,27 @@
 
 #include "../inc/Factory.hpp"
 
+Factory::Factory() {
+    creator.push_back(&Factory::createInt8);    //type 0
+    creator.push_back(&Factory::createInt16);   //type 1
+    creator.push_back(&Factory::createInt32);   //type 2
+    creator.push_back(&Factory::createFloat);   //type 3
+    creator.push_back(&Factory::createDouble);  //type 4
+}
+
 IOperand const * 
 Factory::createOperand( eOperandType type, std::string const & value ) const {
-    // switch(type)
-    // {
-    //     case Int8:
-    //     	return createInt8(value);
-    //     case Int16:
-    //     	return createInt16(value);
-    //     case Int32:
-    //     	return createInt32(value);
-    //     case Float:
-    //     	return createFloat(value);
-    //     case Double:
-    //     	return createIntDouble(value);
-    //     default:
-    //     	return NULL;
-    // }
+    return *(creator.at(type))(value);
 }
 
 IOperand const *
-Factory::createInt8( std::string const & value ) const { return new Operand<int8_t>(value); }
+Factory::createInt8( std::string const & value ) const { return new Operand<signed char>(value); }
 
 IOperand const * 
-Factory::createInt16( std::string const & value ) const { return new Operand<int16_t>(value); }
+Factory::createInt16( std::string const & value ) const { return new Operand<short>(value); }
 
 IOperand const * 
-Factory::createInt32( std::string const & value ) const { return new Operand<int32_t>(value); }
+Factory::createInt32( std::string const & value ) const { return new Operand<int>(value); }
 
 IOperand const * 
 Factory::createFloat( std::string const & value ) const { return new Operand<float>(value); }
