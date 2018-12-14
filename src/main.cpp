@@ -9,5 +9,5 @@
 int main(){
     std::cout << "Hello" << std::endl;
 
-    Operand a(13, 2, 1);
+    Operand a = new Operand(13, 2, 1);
 }

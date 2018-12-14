@@ -13,6 +13,7 @@ class Operand: public IOperand {
 public:
 
     Operand( std::string const & value, eOperandType type, int precision_ );
+
 	int getPrecision( void ) const; // Precision of the type of the instance
 	eOperandType getType( void ) const; // Type of the instance
 

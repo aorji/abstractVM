@@ -14,7 +14,7 @@ Factory::Factory() {
 
 IOperand const * 
 Factory::createOperand( eOperandType type, std::string const & value ) const {
-    return *(creator.at(type))(value);
+    return (this->*creator.at(type))(value);
 }
 
 IOperand const *
