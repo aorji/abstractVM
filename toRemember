@@ -1,0 +1,41 @@
+то программа попытается найти файл с именем по умолчание Makefile в текущем каталоге
+и выполнить инструкции из него. Если в текущем каталоге есть несколько мейкфайлов,
+то можно указать на нужный вот таким образом:
+make -f MyMakefile
+
+цель: зависимости
+[tab] команда
+
+
+all - Это цель по умолчанию для мейкфайла,
+которая будет выполняться, если никакая другая цель не указана явно.
+
+$@ — имя .o-файла
+$< — имя .cpp-файла
+
+The $@ and $< are called the automatic variables. The $@ is the output variable. $< is the first input variable. For example:
+hello.o: hello.c hello.h
+        gcc -c $< -o $@
+Here, hello.o is the output file. This is what $@ expands to. The first dependency is hello.c. That's what $< expands to.
+The -c flag generates the .o file; see man gcc for a more detailed explanation. The -o specifies the file to output to.
+
+The $@ and $< are special macros.
+Where:
+$@ is the file name of the target.
+$< is the name of the first dependency.
+
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.cpp ->
+It's a pattern rule that states "for every target X.o, if there exists
+a file named X.cpp, do the following" (the commands that follow the line you posted).
+
+
+SOURCES = $(*.cpp)
+SOURCES = *.cpp
+SOURCES = $(wildcard *.cpp)
+The first one is an error, the second expands too late (not on definition), the third searches for all files with suffix .cpp in the source directories.
+The builtin-function wildcard is used to force wildcard-expansion where it does not naturally occur.
+
+OBJECTS = $(SOURCES:.cpp=.o)
+That means OBJECTS is assigned the value of SOURCES, after substituting every .cpp at the end of an item with .o.
+
+And %.o as a target means you are defining a rule for creating .os from something else.
