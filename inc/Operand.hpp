@@ -25,10 +25,7 @@ public:
 
     void setPrecision() {
         size_t point = dataStr_.find(".");
-        if (point != std::string::npos)
-            precision_ = dataStr_.length() - point - 1;
-        else
-            precision_ = 0;
+        (point != std::string::npos) ? precision_ = dataStr_.length() - point - 1 : precision_ = 0;
     }
 
     void setType() {
