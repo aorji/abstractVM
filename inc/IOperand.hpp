@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <type_traits>
 
 //New operands created via a "factory method".
 
