@@ -6,6 +6,8 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <string>
 
 //New operands created via a "factory method".
 

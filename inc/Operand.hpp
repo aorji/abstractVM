@@ -12,10 +12,13 @@ class Operand: public IOperand {
 //
 public:
 
-    Operand( std::string const & value, eOperandType type, int precision_ );
+    Operand( std::string const & value ):
+            dataStr_(value) {}
 
-	int getPrecision( void ) const; // Precision of the type of the instance
-	eOperandType getType( void ) const; // Type of the instance
+	int getPrecision( void ) const { // Precision of the type of the instance
+        return this->precision_;
+	}
+	eOperandType getType( void ) const { return this->type_; } // Type of the instance
 
 //	IOperand const * operator+( IOperand const & rhs ) const; // Sum
 //	IOperand const * operator-( IOperand const & rhs ) const; // Difference
@@ -23,9 +26,9 @@ public:
 //	IOperand const * operator/( IOperand const & rhs ) const; // Quotient
 //	IOperand const * operator%( IOperand const & rhs ) const; // Modulo
 
-	std::string const & toString( void ) const; // String representation of the instance
+	std::string const & toString( void ) const{ return this->dataStr_; } // String representation of the instance
 
-	virtual ~Operand( void );
+	virtual ~Operand( void ){};
 
 private:
     T               data_;

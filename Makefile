@@ -5,7 +5,7 @@ INC_DIR =   ./inc/
 
 CC      =   clang++
 FLAGS   =   -Wall -Wextra -Werror
-SRC     =   main.cpp Operand.cpp
+SRC     =   main.cpp Factory.cpp
 OBJ     =   $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 HDRS    =   -I $(INC_DIR)
 

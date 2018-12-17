@@ -12,6 +12,7 @@ class Factory {
 
 public:
     Factory();
+    ~Factory();
     IOperand const * createOperand( eOperandType type, std::string const & value ) const;
 
 private:
@@ -21,7 +22,7 @@ private:
     IOperand const * createFloat( std::string const & value ) const;
     IOperand const * createDouble( std::string const & value ) const;
 
-    std::vector<IOperand const* (Factory::*)( std::string const & value ) const> creator;
+    std::vector<IOperand const* (Factory::*)( std::string const & ) const> creator;
 
 };
 
