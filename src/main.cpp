@@ -9,8 +9,9 @@
 
 int main(){
     std::cout << "Hello" << std::endl;
-    eOperandType type = Int8;
+    eOperandType type = Int16;
     Factory creator;
     IOperand const *a = creator.createOperand(type, "13");
     std::cout << a->toString() << std::endl;
-}
+    std::cout << a->getPrecision() << std::endl;
+    std::cout << a->getType() << std::endl;}

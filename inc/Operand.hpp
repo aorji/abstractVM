@@ -26,8 +26,11 @@ public:
     void setPrecision() {
         size_t point = dataStr_.find(".");
         if (point != std::string::npos)
-        precision_ = dataStr_.length() - point - 1;
+            precision_ = dataStr_.length() - point - 1;
+        else
+            precision_ = 0;
     }
+
     void setType() {
         if (std::is_same<T, signed char>::value)
             type_ = Int8;
