@@ -50,36 +50,33 @@ public:
 	eOperandType getType( ) const override { return this->type_; } // Type of the instance
 
 	IOperand const * operator+( IOperand const & rhs ) const override {
-        if (this->type_ >= rhs.getType()) {
-            T result = 0;
-            std::ostringstream ss;
-            switch (this->type_) {
-                case 0:
-                case 1:
-                case 2:
-                    try {
-                        result = stoi(this->dataStr_) + stoi(rhs.toString());
-                    } catch (std::exception &e) {
-                        std::cout << e.what() << std::endl;
-                    }
-                case 3:
-                    try {
-                        result = stof(this->dataStr_) + stoi(rhs.toString());
-                    } catch (std::exception &e) {
-                        std::cout << e.what() << std::endl;
-                    }
-                case 4:
-                    try {
-                        result = stod(this->dataStr_);
-                    } catch (std::exception &e) {
-                        std::cout << e.what() << std::endl;
-                    }
-            }
-            ss << result;
-            return Factory().createOperand(this->type_, ss.str());
+        std::ostringstream ss;
+        eOperandType newOperandType = (this->type_ >= rhs.getType()) ? this->type_ : rhs.getType();
+        switch (newOperandType) {
+            case 0:
+            case 1:
+            case 2:
+                try {
+                    ss << stoi(this->dataStr_) + stoi(rhs.toString());
+                } catch (std::exception &e) {
+                    std::cout << e.what() << std::endl;
+                }
+                break;
+            case 3:
+                try {
+                    ss << stof(this->dataStr_) + stoi(rhs.toString());
+                } catch (std::exception &e) {
+                    std::cout << e.what() << std::endl;
+                }
+                break;
+            case 4:
+                try {
+                    ss << stod(this->dataStr_);
+                } catch (std::exception &e) {
+                    std::cout << e.what() << std::endl;
+                }
         }
-        return Factory().createOperand(this->type_, "to replase");
-//        else
+        return Factory().createOperand(newOperandType, ss.str());
     } // Sum
 //	IOperand const * operator-( IOperand const & rhs ) const; // Difference
 //	IOperand const * operator*( IOperand const & rhs ) const; // Product
