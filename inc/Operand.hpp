@@ -4,25 +4,25 @@
 #ifndef OPERAND_HPP
 #define OPERAND_HPP
 
-#include "IOperand.hpp"
+//#include "IOperand.hpp"
+#include "Factory.hpp"
 
 template <typename T>
 
 class Operand: public IOperand {
-//
+
 public:
 
-    Operand( std::string const & value ):
+    Operand( ): dataStr_("0"), precision_(0), type_(Int8) {}
+
+    explicit Operand( std::string const & value ):
             dataStr_(value) {
         setPrecision();
         setType();
+//        setData();
     }
 
-	int getPrecision( void ) const { // Precision of the type of the instance
-        return this->precision_;
-	}
-	eOperandType getType( void ) const { return this->type_; } // Type of the instance
-
+//    setters
     void setPrecision() {
         size_t point = dataStr_.find(".");
         (point != std::string::npos) ? precision_ = dataStr_.length() - point - 1 : precision_ = 0;
@@ -41,21 +41,59 @@ public:
             type_ = Double;
         //else error
     }
-//	IOperand const * operator+( IOperand const & rhs ) const; // Sum
+
+//    getters
+
+	int getPrecision( ) const override { // Precision of the type of the instance
+        return this->precision_;
+	}
+	eOperandType getType( ) const override { return this->type_; } // Type of the instance
+
+	IOperand const * operator+( IOperand const & rhs ) const override {
+        if (this->type_ >= rhs.getType()) {
+            T result = 0;
+            std::ostringstream ss;
+            switch (this->type_) {
+                case 0:
+                case 1:
+                case 2:
+                    try {
+                        result = stoi(this->dataStr_) + stoi(rhs.toString());
+                    } catch (std::exception &e) {
+                        std::cout << e.what() << std::endl;
+                    }
+                case 3:
+                    try {
+                        result = stof(this->dataStr_) + stoi(rhs.toString());
+                    } catch (std::exception &e) {
+                        std::cout << e.what() << std::endl;
+                    }
+                case 4:
+                    try {
+                        result = stod(this->dataStr_);
+                    } catch (std::exception &e) {
+                        std::cout << e.what() << std::endl;
+                    }
+            }
+            ss << result;
+            return Factory().createOperand(this->type_, ss.str());
+        }
+        return Factory().createOperand(this->type_, "to replase");
+//        else
+    } // Sum
 //	IOperand const * operator-( IOperand const & rhs ) const; // Difference
 //	IOperand const * operator*( IOperand const & rhs ) const; // Product
 //	IOperand const * operator/( IOperand const & rhs ) const; // Quotient
 //	IOperand const * operator%( IOperand const & rhs ) const; // Modulo
 
-	std::string const & toString( void ) const{ return this->dataStr_; } // String representation of the instance
+	std::string const & toString( ) const override { return this->dataStr_; } // String representation of the instance
 
-	virtual ~Operand( void ){};
+	virtual ~Operand( ) {};
 
 private:
-    T               data_;
     std::string     dataStr_;
     eOperandType    type_;
-    size_t          precision_;
+    int          precision_;
 };
 
 #endif

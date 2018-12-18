@@ -23,7 +23,7 @@ $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
-	@$(CC) -c $< -o $@ $(FLAGS) $(HDRS) $(INCLUDES)
+	@$(CC) -c $< -o $@ $(FLAGS) $(HDRS) $(INCLUDES) -std=c++11
 
 clean:
 	rm -f $(OBJ)

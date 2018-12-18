@@ -4,7 +4,7 @@
 #ifndef FACTORY_HPP
 #define FACTORY_HPP
 
-#include "Operand.hpp"
+#include "IOperand.hpp"
 #include <string>
 #include <cstdint>
 

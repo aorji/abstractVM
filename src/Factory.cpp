@@ -3,6 +3,7 @@
 //
 
 #include "../inc/Factory.hpp"
+#include "../inc/Operand.hpp"
 
 Factory::Factory() {
     creator.push_back(&Factory::createInt8);    //type 0

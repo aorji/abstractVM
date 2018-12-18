@@ -8,10 +8,11 @@
 //#include "../inc/Factory.hpp"
 
 int main(){
-    std::cout << "Hello" << std::endl;
     eOperandType type = Int16;
     Factory creator;
     IOperand const *a = creator.createOperand(type, "13");
-    std::cout << a->toString() << std::endl;
-    std::cout << a->getPrecision() << std::endl;
-    std::cout << a->getType() << std::endl;}
+    std::cout << "string: " << a->toString() << std::endl;
+    std::cout << "precision: " << a->getPrecision() << std::endl;
+    std::cout << "type: " << a->getType() << std::endl;
+//    std::cout << "in T: " << a->getData() << std::endl;
+}
