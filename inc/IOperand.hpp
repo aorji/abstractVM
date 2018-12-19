@@ -10,6 +10,7 @@
 #include <string>
 #include <type_traits>
 #include <sstream>
+#include <cmath>
 
 //New operands created via a "factory method".
 
@@ -39,7 +40,7 @@ public:
 	virtual IOperand const * operator-( IOperand const & rhs ) const = 0; // Difference
 	virtual IOperand const * operator*( IOperand const & rhs ) const = 0; // Product
 	virtual IOperand const * operator/( IOperand const & rhs ) const = 0; // Quotient
-//	virtual IOperand const * operator%( IOperand const & rhs ) const = 0; // Modulo
+	virtual IOperand const * operator%( IOperand const & rhs ) const = 0; // Modulo
 
 	virtual std::string const & toString( ) const = 0; // String representation of the instance
 

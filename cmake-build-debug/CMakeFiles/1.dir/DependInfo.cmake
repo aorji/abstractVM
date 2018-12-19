@@ -6,7 +6,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/aorji/Desktop/1/src/Exception.cpp" "/Users/aorji/Desktop/1/cmake-build-debug/CMakeFiles/1.dir/src/Exception.cpp.o"
   "/Users/aorji/Desktop/1/src/Factory.cpp" "/Users/aorji/Desktop/1/cmake-build-debug/CMakeFiles/1.dir/src/Factory.cpp.o"
-  "/Users/aorji/Desktop/1/src/Operand.cpp" "/Users/aorji/Desktop/1/cmake-build-debug/CMakeFiles/1.dir/src/Operand.cpp.o"
   "/Users/aorji/Desktop/1/src/main.cpp" "/Users/aorji/Desktop/1/cmake-build-debug/CMakeFiles/1.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

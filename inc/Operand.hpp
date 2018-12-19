@@ -168,36 +168,36 @@ public:
         }
         return Factory().createOperand(newOperandType, ss.str());
     }
-//
-//    IOperand const * operator%( IOperand const & rhs ) const override {
-//        std::ostringstream ss;
-//        eOperandType newOperandType = (this->type_ >= rhs.getType()) ? this->type_ : rhs.getType();
-//        switch (newOperandType) {
-//            case 0:
-//            case 1:
-//            case 2:
-//                try {
-//                    ss << stoi(this->dataStr_) % stoi(rhs.toString());
-//                } catch (std::exception &e) {
-//                    std::cout << e.what() << std::endl;
-//                }
-//                break;
-//            case 3:
-//                try {
-//                    ss << stof(this->dataStr_) % stof(rhs.toString());
-//                } catch (std::exception &e) {
-//                    std::cout << e.what() << std::endl;
-//                }
-//                break;
-//            case 4:
-//                try {
-//                    ss << stod(this->dataStr_) % stod(rhs.toString());
-//                } catch (std::exception &e) {
-//                    std::cout << e.what() << std::endl;
-//                }
-//        }
-//        return Factory().createOperand(newOperandType, ss.str());
-//    }
+
+    IOperand const * operator%( IOperand const & rhs ) const override {
+        std::ostringstream ss;
+        eOperandType newOperandType = (this->type_ >= rhs.getType()) ? this->type_ : rhs.getType();
+        switch (newOperandType) {
+            case 0:
+            case 1:
+            case 2:
+                try {
+                    ss << stoi(this->dataStr_) % stoi(rhs.toString());
+                } catch (std::exception &e) {
+                    std::cout << e.what() << std::endl;
+                }
+                break;
+            case 3:
+                try {
+                    ss << fmod(stof(this->dataStr_), stof(rhs.toString()));
+                } catch (std::exception &e) {
+                    std::cout << e.what() << std::endl;
+                }
+                break;
+            case 4:
+                try {
+                    ss << fmod(stod(this->dataStr_), stod(rhs.toString()));
+                } catch (std::exception &e) {
+                    std::cout << e.what() << std::endl;
+                }
+        }
+        return Factory().createOperand(newOperandType, ss.str());
+    }
 
 	std::string const & toString( ) const override { return this->dataStr_; } // String representation of the instance
 

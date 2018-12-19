@@ -177,33 +177,6 @@ src/Factory.cpp.s:
 	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Factory.cpp.s
 .PHONY : src/Factory.cpp.s
 
-src/Operand.o: src/Operand.cpp.o
-
-.PHONY : src/Operand.o
-
-# target to build an object file
-src/Operand.cpp.o:
-	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Operand.cpp.o
-.PHONY : src/Operand.cpp.o
-
-src/Operand.i: src/Operand.cpp.i
-
-.PHONY : src/Operand.i
-
-# target to preprocess a source file
-src/Operand.cpp.i:
-	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Operand.cpp.i
-.PHONY : src/Operand.cpp.i
-
-src/Operand.s: src/Operand.cpp.s
-
-.PHONY : src/Operand.s
-
-# target to generate assembly for a file
-src/Operand.cpp.s:
-	$(MAKE) -f CMakeFiles/1.dir/build.make CMakeFiles/1.dir/src/Operand.cpp.s
-.PHONY : src/Operand.cpp.s
-
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -246,9 +219,6 @@ help:
 	@echo "... src/Factory.o"
 	@echo "... src/Factory.i"
 	@echo "... src/Factory.s"
-	@echo "... src/Operand.o"
-	@echo "... src/Operand.i"
-	@echo "... src/Operand.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
