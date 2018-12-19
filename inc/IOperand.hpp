@@ -12,6 +12,7 @@
 #include <sstream>
 #include <cmath>
 
+#include "Exception.hpp"
 //New operands created via a "factory method".
 
 // AbstractVM uses 5 operand classes:
