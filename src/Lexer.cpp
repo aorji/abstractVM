@@ -62,6 +62,19 @@ Lexer::read_from_file() {
     }
 }
 
+//void
+//Lexer::regular_ex_match(std::string line) {
+//    if (std::regex_match(line, result, instr_with_no_value)  ||
+//        std::regex_match(line, result, instr_with_int_value) ||
+//        std::regex_match(line, result, instr_with_fd_value)  ||
+//        std::regex_match(line, result, empty_line)           ||
+//        std::regex_match(line, result, comment))
+//        read_value.push_back(result);
+//    else{
+//        std::cout << line << std::endl;
+//        throw LexerError();
+//    }
+//}
 std::vector<std::smatch>
 Lexer::getReadValue() {
     return read_value;

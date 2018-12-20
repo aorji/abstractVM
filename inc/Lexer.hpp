@@ -21,6 +21,7 @@ public:
     void read_from_st_input();
 //    bool check_for_validity(char *path);
     std::vector<std::smatch> getReadValue();
+//    void regular_ex_match(std::string line);
 
 private:
     int ac_;
