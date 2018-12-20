@@ -16,4 +16,13 @@ public:
     const char* what() const throw();
 };
 
+class LexerError: public std::exception {
+public:
+    LexerError( );
+    LexerError( LexerError const & src );
+    ~LexerError( ) throw();
+    LexerError & operator=( LexerError const & rhs);
+    const char* what() const throw();
+};
+
 #endif

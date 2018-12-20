@@ -5,7 +5,7 @@ INC_DIR =   ./inc/
 
 CC      =   clang++
 FLAGS   =   -Wall -Wextra -Werror
-SRC     =   main.cpp Factory.cpp Exception.cpp
+SRC     =   main.cpp Factory.cpp Exception.cpp Lexer.cpp
 OBJ     =   $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 HDRS    =   -I $(INC_DIR)
 

@@ -11,7 +11,6 @@
 #include <type_traits>
 #include <sstream>
 #include <cmath>
-#include <regex>
 
 #include "Exception.hpp"
 //New operands created via a "factory method".

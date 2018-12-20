@@ -18,4 +18,4 @@ add_executable(1
         exemple2.avm
         exemple3.avm
         Makefile
-        toRemember)
+        toRemember src/Lexer.cpp inc/Lexer.hpp inc/Lexer.hpp)
