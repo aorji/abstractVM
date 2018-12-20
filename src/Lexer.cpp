@@ -10,6 +10,7 @@ Lexer::Lexer(int ac, char **av):ac_(ac), av_(av) {
     instr_with_int_value = (R"(^(push|assert)\s+(int8|int16|int32)(\()([\-]?\d+)(\))(\s*[;].*)*)");
     instr_with_fd_value = (R"(^(push|assert)\s+(float|double)(\()([\-]?\d+\.\d+)(\))(\s*[;].*)*)");
     comment = (R"(\s*[;].*)");
+    empty_line = (R"(^$)");
     reader.push_back(&Lexer::read_from_st_input);    //type 0
     reader.push_back(&Lexer::read_from_file);    //type 1
 }
@@ -26,6 +27,7 @@ Lexer::read_from_st_input() {
         if (std::regex_match(line, result,  instr_with_no_value) ||
             std::regex_match(line, result, instr_with_int_value) ||
             std::regex_match(line, result, instr_with_fd_value)  ||
+            std::regex_match(line, result, empty_line)           ||
             std::regex_match(line, result, comment))
             read_value.push_back(result);
         else
@@ -38,17 +40,53 @@ Lexer::read_from_st_input() {
 
 void
 Lexer::read_from_file() {
-    av_=NULL;
+    for(int i = 1; i <= ac_ - 1; ++i) {
+//        if (!chech_for_validity(av_[i]))
+//            continue ;
+        std::ifstream ifs(av_[i]);
+        while (std::getline(ifs, line)) {
+            if (std::regex_match(line, result, instr_with_no_value)  ||
+                std::regex_match(line, result, instr_with_int_value) ||
+                std::regex_match(line, result, instr_with_fd_value)  ||
+                std::regex_match(line, result, empty_line)           ||
+                std::regex_match(line, result, comment))
+                read_value.push_back(result);
+            else{
+                std::cout << line << std::endl;
+                throw LexerError();
+            }
+            if (line == "exit")
+                break;
+        }
+        ifs.close();
+    }
 }
 
 std::vector<std::smatch>
 Lexer::getReadValue() {
-//    for(auto & value: read_value) {
-//        for (std::smatch::iterator it = value.begin(); it!=value.end(); ++it) {
-//            std::cout << *it << std::endl;
-//        }
-//    }
     return read_value;
 }
+
+
+//bool
+//Lexer::check_for_validity(char *path) {
+//    struct stat s;
+//
+//    if(stat(path, &s) == 0) {
+//        if(s.st_mode & S_IFDIR)
+//            return false;
+//        else if (!(s.st_mode & S_IROTH) & !(s.st_mode & S_IRGRP) & !(s.st_mode & S_IRUSR))
+//            return false;
+//        else if(s.st_mode & S_IFREG)
+//            return true;
+//    }
+//    return false;
+//}
+
+//    for(auto & v: read_value) {
+//        std::cout << "\\" << std::endl;
+//        for (auto &m : v)
+//            std::cout <<" | "<< v[0] << std::endl;
+//    }
 //            for (auto &str : read_value.back())
 //                std::cout <<"el: "<< str << std::endl;
