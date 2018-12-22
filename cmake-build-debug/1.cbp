@@ -114,6 +114,9 @@
 		<Unit filename="/Users/aorji/Desktop/1/inc/Operand.hpp">
 			<Option target="1"/>
 		</Unit>
+		<Unit filename="/Users/aorji/Desktop/1/inc/Parser.hpp">
+			<Option target="1"/>
+		</Unit>
 		<Unit filename="/Users/aorji/Desktop/1/src/Exception.cpp">
 			<Option target="1"/>
 		</Unit>
@@ -121,6 +124,9 @@
 			<Option target="1"/>
 		</Unit>
 		<Unit filename="/Users/aorji/Desktop/1/src/Lexer.cpp">
+			<Option target="1"/>
+		</Unit>
+		<Unit filename="/Users/aorji/Desktop/1/src/Parser.cpp">
 			<Option target="1"/>
 		</Unit>
 		<Unit filename="/Users/aorji/Desktop/1/src/main.cpp">

@@ -150,7 +150,7 @@ public:
                     if (!stoi(rhs.toString()))
 
                      if (!stoi(rhs.toString()))
-                        throw DivisionByZero();   throw DivisionByZero();
+                        throw DivisionByZero(toString(), rhs.toString());
                     ss << stoi(this->dataStr_) / stoi(rhs.toString());
                 } catch (std::exception &e) {
                     std::cout << e.what() << std::endl;
@@ -159,7 +159,7 @@ public:
             case 3:
                 try {
                     if (!stof(rhs.toString()))
-                        throw DivisionByZero();
+                        throw DivisionByZero(toString(), rhs.toString());
                     ss << stof(this->dataStr_) / stof(rhs.toString());
                 } catch (std::exception &e) {
                     std::cout << e.what() << std::endl;
@@ -168,7 +168,7 @@ public:
             case 4:
                 try {
                     if (!stod(rhs.toString()))
-                        throw DivisionByZero();
+                        throw DivisionByZero(toString(), rhs.toString());
                     ss << stod(this->dataStr_) / stod(rhs.toString());
                 } catch (std::exception &e) {
                     std::cout << e.what() << std::endl;
@@ -186,7 +186,7 @@ public:
             case 2:
                 try {
                     if (!stoi(rhs.toString()))
-                        throw DivisionByZero();
+                        throw DivisionByZero(toString(), rhs.toString());
                     ss << stoi(this->dataStr_) % stoi(rhs.toString());
                 } catch (std::exception &e) {
                     std::cout << e.what() << std::endl;
@@ -195,7 +195,7 @@ public:
             case 3:
                 try {
                     if (!stof(rhs.toString()))
-                        throw DivisionByZero();
+                        throw DivisionByZero(toString(), rhs.toString());
                     ss << fmod(stof(this->dataStr_), stof(rhs.toString()));
                 } catch (std::exception &e) {
                     std::cout << e.what() << std::endl;
@@ -204,7 +204,7 @@ public:
             case 4:
                 try {
                     if (!stod(rhs.toString()))
-                        throw DivisionByZero();
+                        throw DivisionByZero(toString(), rhs.toString());
                     ss << fmod(stod(this->dataStr_), stod(rhs.toString()));
                 } catch (std::exception &e) {
                     std::cout << e.what() << std::endl;

@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/1.dir/src/Factory.cpp.o"
   "CMakeFiles/1.dir/src/main.cpp.o"
   "CMakeFiles/1.dir/src/Lexer.cpp.o"
+  "CMakeFiles/1.dir/src/Parser.cpp.o"
   "1.pdb"
   "1"
 )
