@@ -66,17 +66,7 @@ Lexer::read_from_file() {
 
 bool
 Lexer::check_file_access(char *path) {
-    struct stat s;
-
-    if(stat(path, &s) == 0) {
-        if(s.st_mode & S_IFDIR)
-            return false;
-        else if (!(s.st_mode & S_IROTH) & !(s.st_mode & S_IRGRP) & !(s.st_mode & S_IRUSR))
-            return false;
-        else if(s.st_mode & S_IFREG)
-            return true;
-    }
-    return false;
+    return (!access(path, 0) && !access(path, 3));
 }
 
 std::vector<std::map<std::string, std::string>>

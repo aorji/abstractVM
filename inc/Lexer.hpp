@@ -13,6 +13,7 @@
 #include <sstream>
 #include <unistd.h>
 #include <map>
+#include <sys/uio.h>
 
 class Lexer{
 public:
