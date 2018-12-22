@@ -45,4 +45,16 @@ private:
     std::string error_line;
 };
 
+class StackError: public std::exception {
+public:
+    explicit StackError( std::string error );
+    StackError( StackError const & src );
+    ~StackError( ) throw();
+    StackError & operator=( StackError const & rhs);
+    const char* what() const throw();
+
+private:
+    std::string error_line;
+};
+
 #endif

@@ -6,8 +6,8 @@
 #include "Lexer.hpp"
 #include "../inc/Operand.hpp"
 #include "../inc/Parser.hpp"
+#include "../inc/Executor.hpp"
 //#include "../inc/Factory.hpp"
-#include <iomanip>
 
 int main(int ac, char **av) {
 //    while (1){
@@ -47,15 +47,17 @@ int main(int ac, char **av) {
 //    std::cout << "a % b = " << (*a % *b)->toString() << std::endl;
 //    ac = 0;
 //    av = NULL;
+//        for(auto & v: result)
+//            if (v["cmd"] != "")
+//                std::cout << "cmd: " << v["cmd"] << std::endl;
     try {
         Lexer lexer(ac, av);
         lexer.run();
         std::vector<std::map<std::string, std::string>> result = lexer.getReadValue();
-//        for(auto & v: result)
-//            if (v["cmd"] != "")
-//                std::cout << "cmd: " << v["cmd"] << std::endl;
-        Parser parser = Parser();
+        Parser parser;
         parser.syntactic_analysis(result);
+        Executor executor;
+//        executor.run(result);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }

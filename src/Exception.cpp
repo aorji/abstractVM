@@ -45,3 +45,17 @@ RangeError::what() const throw() {
     std::string range_error = "Error: \"" + error_line +  "\" is out of range";
     return range_error.c_str();
 }
+
+StackError::StackError ( std::string error ): error_line(error) {}
+StackError::StackError ( StackError const & src ) { *this = src; }
+StackError::~StackError ( ) throw() {}
+StackError &
+StackError::operator=( StackError const & rhs) {
+    (void)rhs;
+    return *this;
+}
+const char *
+StackError::what() const throw() {
+    std::string range_error = "Error: " + error_line;
+    return range_error.c_str();
+}

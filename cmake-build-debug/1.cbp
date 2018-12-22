@@ -102,6 +102,9 @@
 		<Unit filename="/Users/aorji/Desktop/1/inc/Exception.hpp">
 			<Option target="1"/>
 		</Unit>
+		<Unit filename="/Users/aorji/Desktop/1/inc/Executor.hpp">
+			<Option target="1"/>
+		</Unit>
 		<Unit filename="/Users/aorji/Desktop/1/inc/Factory.hpp">
 			<Option target="1"/>
 		</Unit>
@@ -118,6 +121,9 @@
 			<Option target="1"/>
 		</Unit>
 		<Unit filename="/Users/aorji/Desktop/1/src/Exception.cpp">
+			<Option target="1"/>
+		</Unit>
+		<Unit filename="/Users/aorji/Desktop/1/src/Executor.cpp">
 			<Option target="1"/>
 		</Unit>
 		<Unit filename="/Users/aorji/Desktop/1/src/Factory.cpp">
