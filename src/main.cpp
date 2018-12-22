@@ -46,7 +46,13 @@ int main(int ac, char **av) {
     try {
         Lexer lexer(ac, av);
         lexer.run();
-        lexer.getReadValue();
+        std::vector<std::map<std::string, std::string>> result = lexer.getReadValue();
+        for(auto & v: result)
+        {
+            std::cout << "cmd: " << v["cmd"] << std::endl;
+            std::cout << "type: " << v["type"] << std::endl;
+            std::cout << "value: " << v["value"] << std::endl;
+        }
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }

@@ -12,6 +12,7 @@
 #include <fstream>
 #include <sstream>
 #include <unistd.h>
+#include <map>
 
 class Lexer{
 public:
@@ -19,16 +20,16 @@ public:
     void run();
     void read_from_file();
     void read_from_st_input();
-//    bool check_for_validity(char *path);
-    std::vector<std::smatch> getReadValue();
-//    void regular_ex_match(std::string line);
+    bool check_file_access(char *path);
+    std::vector<std::map<std::string, std::string>> getReadValue();
+    bool regular_ex_match(std::string line);
 
 private:
     int ac_;
     char **av_;
 
     std::vector<void (Lexer::*)()> reader;
-    std::vector<std::smatch> read_value;
+    std::vector<std::map<std::string, std::string>> read_value;
 
     std::regex instr_with_no_value;
     std::regex instr_with_int_value;

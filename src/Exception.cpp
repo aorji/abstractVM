@@ -15,7 +15,7 @@ DivisionByZero::operator=( DivisionByZero const & rhs) {
 const char *
 DivisionByZero::what() const throw() { return ("Error: Divisor is equal to 0!"); }
 
-LexerError::LexerError ( ) {}
+LexerError::LexerError ( std::string error ): error_line(error) {}
 LexerError::LexerError ( LexerError const & src ) { *this = src; }
 LexerError::~LexerError ( ) throw() {}
 LexerError &
@@ -24,4 +24,7 @@ LexerError::operator=( LexerError const & rhs) {
 	return *this;
 }
 const char *
-LexerError::what() const throw() { return ("Error: Lexer Error!"); }
+LexerError::what() const throw() {
+    std::string lexer_error = "Lexer Error in \"" + error_line +  "\"";
+    return lexer_error.c_str();
+}

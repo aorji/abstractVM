@@ -6,6 +6,7 @@
 #define EXEPTION_HPP
 
 #include <exception>
+#include <string>
 
 class DivisionByZero: public std::exception {
 public:
@@ -18,11 +19,14 @@ public:
 
 class LexerError: public std::exception {
 public:
-    LexerError( );
+    explicit LexerError( std::string error );
     LexerError( LexerError const & src );
     ~LexerError( ) throw();
     LexerError & operator=( LexerError const & rhs);
     const char* what() const throw();
+
+private:
+    std::string error_line;
 };
 
 #endif
