@@ -51,8 +51,10 @@ Lexer::read_from_st_input() {
 void
 Lexer::read_from_file() {
         for(int i = 1; i <= ac_ - 1; ++i) {
-        if (!check_file_access(av_[i]))
+        if (!check_file_access(av_[i])) {
+            std::cerr << "Error: " << av_[i] << " has bad access" << std::endl;
             continue ;
+        }
         std::ifstream ifs(av_[i]);
         while (std::getline(ifs, line)) {
             if (!regular_ex_match(line))
@@ -66,7 +68,7 @@ Lexer::read_from_file() {
 
 bool
 Lexer::check_file_access(char *path) {
-    return (!access(path, 0) && !access(path, 3));
+    return (!access(path, 0) && !access(path, 04));
 }
 
 std::vector<std::map<std::string, std::string>>
