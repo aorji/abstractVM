@@ -7,6 +7,7 @@
 #include "../inc/Operand.hpp"
 #include "../inc/Parser.hpp"
 //#include "../inc/Factory.hpp"
+#include <iomanip>
 
 int main(int ac, char **av) {
 //    while (1){
@@ -50,9 +51,9 @@ int main(int ac, char **av) {
         Lexer lexer(ac, av);
         lexer.run();
         std::vector<std::map<std::string, std::string>> result = lexer.getReadValue();
-        for(auto & v: result)
-            if (v["cmd"] != "")
-                std::cout << "cmd: " << v["cmd"] << std::endl;
+//        for(auto & v: result)
+//            if (v["cmd"] != "")
+//                std::cout << "cmd: " << v["cmd"] << std::endl;
         Parser parser = Parser();
         parser.syntactic_analysis(result);
     } catch (std::exception &e) {

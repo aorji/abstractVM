@@ -42,7 +42,6 @@ RangeError::operator=( RangeError const & rhs) {
 }
 const char *
 RangeError::what() const throw() {
-    std::string range_error = "\"" + error_line +  "\" is out of range";
-    std::cout << range_error << std::endl;
+    std::string range_error = "Error: \"" + error_line +  "\" is out of range";
     return range_error.c_str();
 }

@@ -34,29 +34,28 @@ Parser::syntactic_analysis(std::vector<std::map<std::string, std::string>> data)
 
 void
 Parser::check_int8( std::string value ) {
-//    int result = 0;
-//    try {
-//        result = stoi(value);
-//        if (result < std::numeric_limits<signed char >::min() ||
-//            result > std::numeric_limits<signed char>::max()){
-//            throw RangeError(value);
-//        }
-//    } catch (std::exception &e) {
-//        throw RangeError(value);
-//    }
+    int result = 0;
+    try {
+        result = stoi(value);
+    } catch (std::exception &e) {
+        throw RangeError("int8(" + value + ")");
+    }
+    if (result < std::numeric_limits<signed char>::min() ||
+        result > std::numeric_limits<signed char>::max())
+        throw RangeError("int8(" + value + ")");
 }
 
 void
 Parser::check_int16( std::string value ){
-//    int result = 0;
-//    try {
-//        result = stoi(value);
-//        if (result < std::numeric_limits<short >::min() ||
-//            result > std::numeric_limits<short>::max())
-//            throw RangeError(value);
-//    } catch (std::exception &e) {
-//        throw RangeError(value);
-//    }
+    int result = 0;
+    try {
+        result = stoi(value);
+    } catch (std::exception &e) {
+        throw RangeError("int16(" + value + ")");
+    }
+    if (result < std::numeric_limits<short>::min() ||
+        result > std::numeric_limits<short>::max())
+        throw RangeError("int16(" + value + ")");
 };
 
 void
@@ -64,7 +63,7 @@ Parser::check_int32( std::string value ){
     try {
         stoi(value);
     } catch (std::exception &e) {
-        throw RangeError(value);
+        throw RangeError("int32(" + value + ")");
     }
 };
 
@@ -73,7 +72,7 @@ Parser::check_float( std::string value ){
     try {
         stof(value);
     } catch (std::exception &e) {
-        throw RangeError(value);
+        throw RangeError("float(" + value + ")");
     }
 };
 
@@ -82,7 +81,7 @@ Parser::check_double( std::string value ){
     try {
         stod(value);
     } catch (std::exception &e) {
-        throw RangeError(value);
+        throw RangeError("double(" + value + ")");
     }
 };
 
