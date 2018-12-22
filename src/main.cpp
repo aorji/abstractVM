@@ -5,6 +5,7 @@
 #include <Factory.hpp>
 #include "Lexer.hpp"
 #include "../inc/Operand.hpp"
+#include "../inc/Parser.hpp"
 //#include "../inc/Factory.hpp"
 
 int main(int ac, char **av) {
@@ -31,32 +32,31 @@ int main(int ac, char **av) {
 //
 //    }
 //    std::cout << ac << " " << av[0];
-    eOperandType type = Float;
-    Factory creator;
-    IOperand const *a = creator.createOperand(type, "5");
-    IOperand const *b = creator.createOperand(type, "0");
+//    eOperandType type = Float;
+//    Factory creator;
+//    IOperand const *a = creator.createOperand(type, "5");
+//    IOperand const *b = creator.createOperand(type, "0");
 //    std::cout << "string: " << a->toString() << std::endl;
 //    std::cout << "precision: " << a->getPrecision() << std::endl;
 //    std::cout << "type: " << a->getType() << std::endl;
 //    std::cout << "a + b = " << (*a + *b)->toString() << std::endl;
 //    std::cout << "a - b = " << (*a - *b)->toString() << std::endl;
 //    std::cout << "a * b = " << (*a * *b)->toString() << std::endl;
-    std::cout << "a / b = " << (*a / *b)->toString() << std::endl;
-    std::cout << "a % b = " << (*a % *b)->toString() << std::endl;
-    ac = 0;
-    av = NULL;
-//    try {
-//        Lexer lexer(ac, av);
-//        lexer.run();
-//        std::vector<std::map<std::string, std::string>> result = lexer.getReadValue();
-//        for(auto & v: result)
-//        {
-//            if (v["cmd"] != "")
-//                std::cout << "cmd: " << v["cmd"] << std::endl;
-////            std::cout << "type: " << v["type"] << std::endl;
-////            std::cout << "value: " << v["value"] << std::endl;
-//        }
-//    } catch (std::exception &e) {
-//        std::cout << e.what() << std::endl;
-//    }
+//    std::cout << "a / b = " << (*a / *b)->toString() << std::endl;
+//    std::cout << "a % b = " << (*a % *b)->toString() << std::endl;
+//    ac = 0;
+//    av = NULL;
+    try {
+        Lexer lexer(ac, av);
+        lexer.run();
+        std::vector<std::map<std::string, std::string>> result = lexer.getReadValue();
+        for(auto & v: result)
+            if (v["cmd"] != "")
+                std::cout << "cmd: " << v["cmd"] << std::endl;
+        Parser parser = Parser();
+        parser.syntactic_analysis(result);
+    } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
+
 }

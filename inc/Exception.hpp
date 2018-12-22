@@ -33,4 +33,16 @@ private:
     std::string error_line;
 };
 
+class RangeError: public std::exception {
+public:
+    explicit RangeError( std::string error );
+    RangeError( RangeError const & src );
+    ~RangeError( ) throw();
+    RangeError & operator=( RangeError const & rhs);
+    const char* what() const throw();
+
+private:
+    std::string error_line;
+};
+
 #endif
