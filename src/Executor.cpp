@@ -63,8 +63,8 @@ Executor::pop( ) {
 
 void
 Executor::dump( ) {
-   for(auto & v: stack)
-       std::cout << v->toString() << std::endl;
+   for(std::vector<IOperand const *>::reverse_iterator it = stack.rbegin(); it != stack.rend(); ++it)
+    	std::cout << (*it)->toString() << std::endl;
 }
 
 void
