@@ -27,7 +27,7 @@ public:
     void check_double( std::string value );
 
 private:
-    std::vector<void (Parser::*)( std::string )> checker;
+    std::map<std::string, void (Parser::*)( std::string )> checker;
 };
 
 #endif

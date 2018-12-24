@@ -5,31 +5,20 @@
 #include "../inc/Parser.hpp"
 
 Parser::Parser() {
-    checker.push_back(&Parser::check_int8); //at(0)
-    checker.push_back(&Parser::check_int16);
-    checker.push_back(&Parser::check_int32);
-    checker.push_back(&Parser::check_float);
-    checker.push_back(&Parser::check_double); //at(4)
+    checker["int8"] = &Parser::check_int8;
+    checker["int16"] = &Parser::check_int16;
+    checker["int32"] = &Parser::check_int32;
+    checker["float"] = &Parser::check_float;
+    checker["double"] = &Parser::check_double;
 }
 
 Parser::~Parser() = default;
 
 void
 Parser::run(std::vector<std::map<std::string, std::string>> data) {
-    for (auto &v: data) {
-        if (v["cmd"] == "push" || v["cmd"] == "assert") {
-            if (v["type"] == "int8")
-                (this->*checker.at(0))(v["value"]);
-            else if (v["type"] == "int16")
-                (this->*checker.at(1))(v["value"]);
-            else if (v["type"] == "int32")
-                (this->*checker.at(2))(v["value"]);
-            else if (v["type"] == "float")
-                (this->*checker.at(3))(v["value"]);
-            else if (v["type"] == "double")
-                (this->*checker.at(4))(v["value"]);
-        }
-    }
+    for (auto &v: data)
+        if (v["cmd"] == "push" || v["cmd"] == "assert")
+            (this->*checker[v["type"]])(v["value"]);
 }
 
 void
