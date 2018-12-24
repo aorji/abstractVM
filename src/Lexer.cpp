@@ -44,7 +44,7 @@ void
 Lexer::read_from_st_input() {
     while (std::getline(std::cin, line)){
         if (!regular_ex_match(line))
-            throw LexerError(line);
+            throw LexerError("Error: " + line);
         if (line == ";;")
             break;
     }

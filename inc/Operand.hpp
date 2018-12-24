@@ -19,7 +19,6 @@ public:
             dataStr_(value) {
         setPrecision();
         setType();
-//        setData();
     }
 
 //    setters
@@ -39,7 +38,6 @@ public:
             type_ = Float;
         else if (std::is_same<T, double>::value)
             type_ = Double;
-        //else error
     }
 
 //    getters
@@ -47,6 +45,7 @@ public:
 	int getPrecision( ) const override { // Precision of the type of the instance
         return this->precision_;
 	}
+
 	eOperandType getType( ) const override { return this->type_; } // Type of the instance
 
 	IOperand const * operator+( IOperand const & rhs ) const override { // Sum
@@ -148,8 +147,6 @@ public:
             case 2:
                 try {
                     if (!stoi(rhs.toString()))
-
-                     if (!stoi(rhs.toString()))
                         throw DivisionByZero(toString(), rhs.toString());
                     ss << stoi(this->dataStr_) / stoi(rhs.toString());
                 } catch (std::exception &e) {

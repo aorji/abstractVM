@@ -28,8 +28,7 @@ LexerError::operator=( LexerError const & rhs) {
 }
 const char *
 LexerError::what() const throw() {
-    std::string lexer_error = "Lexer Error in \"" + error_line +  "\"";
-    return lexer_error.c_str();
+    return error_line.c_str();
 }
 
 RangeError::RangeError ( std::string error ): error_line(error) {}
@@ -56,6 +55,5 @@ StackError::operator=( StackError const & rhs) {
 }
 const char *
 StackError::what() const throw() {
-    std::string range_error = "Error: " + error_line;
-    return range_error.c_str();
+    return error_line.c_str();
 }

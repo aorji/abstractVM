@@ -31,13 +31,13 @@ Executor::run(std::vector<std::map<std::string, std::string>> data) {
 			assert( v["value"] );
 	}
 	if (!exit_)
-		throw StackError("no exit instruction");
+		throw StackError("Error: no exit instruction");
 }
 
 void
 Executor::pop( ) {
    if (stack.empty())
-       throw StackError("not enough elements");
+       throw StackError("Error: empty stack");
    stack.pop_back();
 }
 
@@ -50,7 +50,7 @@ Executor::dump( ) {
 void
 Executor::add( ) {
 	if (stack.size() < 2)
-		throw StackError("not enough elements");
+		throw StackError("Error: missing operand");
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
@@ -61,18 +61,18 @@ Executor::add( ) {
 void
 Executor::sub( ) {
 	if (stack.size() < 2)
-		throw StackError("not enough elements");
+		throw StackError("Error: missing operand");
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
-	stack.push_back(*a - *b);
+	stack.push_back(*b - *a);
 }
 
 void
 Executor::mul( ) {
 	if (stack.size() < 2)
-		throw StackError("not enough elements");
+		throw StackError("Error: missing operand");
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
@@ -83,23 +83,23 @@ Executor::mul( ) {
 void
 Executor::div( ) {
 	if (stack.size() < 2)
-		throw StackError("not enough elements");
+		throw StackError("Error: missing operand");
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
-	stack.push_back(*a / *b);
+	stack.push_back(*b / *a);
 }
 
 void
 Executor::mod( ) {
 	if (stack.size() < 2)
-		throw StackError("not enough elements");
+		throw StackError("Error: empty stack");
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
-	stack.push_back(*a % *b);
+	stack.push_back(*b % *a);
 }
 
 void
@@ -110,7 +110,7 @@ Executor::print( ) {
 		std::cout << c << std::endl;
 	}
 	else
-		throw StackError(a->toString() + " is not int8");
+		throw StackError("Print error: " + a->toString() + " is not int8");
 }
 
 void
@@ -136,5 +136,5 @@ Executor::push( std::string type, std::string value ) {
 void
 Executor::assert( std::string value ) {
 	if (value != stack.back()->toString())
-		throw StackError(value + " != " + stack.back()->toString());
+		throw StackError("Assert error: " + value + " != " + stack.back()->toString());
 }

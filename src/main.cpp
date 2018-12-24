@@ -6,8 +6,6 @@
 #include "../inc/Operand.hpp"
 #include "../inc/Parser.hpp"
 #include "../inc/Executor.hpp"
-// #include <algorithm>
-//#include "../inc/Factory.hpp"
 
 int main(int ac, char **av) {
     try {
