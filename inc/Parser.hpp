@@ -25,6 +25,7 @@ class Parser {
 
 public:
     Parser();
+    Parser( Parser const & src );
     ~Parser();
 
     void run(std::vector<std::map<std::string, std::string>> data);
@@ -34,6 +35,7 @@ public:
     void check_float( std::string value );
     void check_double( std::string value );
 
+    Parser & operator=( Parser const & rhs);
 private:
     std::map<std::string, void (Parser::*)( std::string )> checker;
 };

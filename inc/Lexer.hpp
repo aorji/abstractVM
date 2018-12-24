@@ -26,7 +26,9 @@
 class Lexer{
 public:
     Lexer(int ac, char **av);
+    Lexer( Lexer const & src );
     ~Lexer();
+
     void run();
     void read_from_file();
     void read_from_st_input();
@@ -34,6 +36,7 @@ public:
     std::vector<std::map<std::string, std::string>> getReadValue();
     bool regular_ex_match(std::string line);
 
+    Lexer & operator=( Lexer const & rhs);
 private:
     int ac_;
     char **av_;

@@ -20,6 +20,8 @@ Parser::Parser() {
     checker["double"] = &Parser::check_double;
 }
 
+Parser::Parser ( Parser const & src ) { *this = src; }
+
 Parser::~Parser() = default;
 
 void
@@ -82,3 +84,8 @@ Parser::check_double( std::string value ){
     }
 };
 
+Parser &
+Parser::operator=( Parser const & rhs) {
+    (void)rhs;
+    return *this;
+}

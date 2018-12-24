@@ -21,8 +21,11 @@ class Factory {
 
 public:
     Factory();
+    Factory( Factory const & src );
     ~Factory();
+
     IOperand const * createOperand( eOperandType type, std::string const & value ) const;
+    Factory & operator=( Factory const & rhs);
 
 private:
     IOperand const * createInt8( std::string const & value ) const;

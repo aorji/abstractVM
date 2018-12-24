@@ -21,6 +21,8 @@ Factory::Factory() {
     creator.push_back(&Factory::createDouble);  //type 4
 }
 
+Factory::Factory ( Factory const & src ) { *this = src; }
+
 Factory::~Factory() = default;
 
 IOperand const * 
@@ -42,3 +44,9 @@ Factory::createFloat( std::string const & value ) const { return new Operand<flo
 
 IOperand const * 
 Factory::createDouble( std::string const & value ) const { return new Operand<double>(value); }
+
+Factory &
+Factory::operator=( Factory const & rhs) {
+    (void)rhs;
+    return *this;
+}

@@ -30,6 +30,8 @@ public:
         setType();
     }
 
+    Operand ( Operand const & src ) { *this = src; }
+
 //    setters
     void setPrecision() {
         size_t point = dataStr_.find(".");
@@ -220,6 +222,11 @@ public:
     }
 
 	std::string const & toString( ) const override { return this->dataStr_; } // String representation of the instance
+
+    Operand & operator=( Operand const & rhs) {
+        (void)rhs;
+        return *this;
+    }
 
 	virtual ~Operand( ) {};
 

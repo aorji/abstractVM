@@ -23,6 +23,8 @@ Lexer::Lexer(int ac, char **av):ac_(ac), av_(av) {
     reader.push_back(&Lexer::read_from_file);    // at(1)
 }
 
+Lexer::Lexer( Lexer const & src ) { *this = src; }
+
 Lexer::~Lexer() = default;
 
 void
@@ -86,3 +88,8 @@ Lexer::getReadValue() {
     return read_value;
 }
 
+Lexer &
+Lexer::operator=( Lexer const & rhs) {
+    (void)rhs;
+    return *this;
+}

@@ -15,6 +15,7 @@
 class Executor {
 public:
     Executor();
+	Executor( Executor const & src );
     ~Executor();
 
    void pop( );
@@ -31,6 +32,7 @@ public:
 
    void run( std::vector<std::map<std::string, std::string>> data);
 
+	Executor & operator=( Executor const & rhs);
 private:
 	bool exit_;
 	std::vector<IOperand const *> stack;

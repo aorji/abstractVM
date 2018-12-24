@@ -26,6 +26,8 @@ Executor::Executor(): exit_(false) {
 
 Executor::~Executor() = default;
 
+Executor::Executor ( Executor const & src ) { *this = src; }
+
 void
 Executor::run(std::vector<std::map<std::string, std::string>> data) {
 	for(auto & v: data){
@@ -145,4 +147,10 @@ void
 Executor::assert( std::string value ) {
 	if (value != stack.back()->toString())
 		throw StackError("Assert error: " + value + " != " + stack.back()->toString());
+}
+
+Executor &
+Executor::operator=( Executor const & rhs) {
+	(void)rhs;
+	return *this;
 }
