@@ -18,6 +18,7 @@
 class Lexer{
 public:
     Lexer(int ac, char **av);
+    ~Lexer();
     void run();
     void read_from_file();
     void read_from_st_input();

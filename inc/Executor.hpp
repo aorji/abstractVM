@@ -34,7 +34,7 @@ public:
 private:
 	bool exit_;
 	std::vector<IOperand const *> stack;
-	std::vector<void (Executor::*)()> cmd;
+    std::map<std::string, void (Executor::*)()> instruction;
 };
 
 #endif

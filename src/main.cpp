@@ -14,11 +14,10 @@ int main(int ac, char **av) {
         Lexer lexer(ac, av);
         lexer.run();
         std::vector<std::map<std::string, std::string>> result = lexer.getReadValue();
+
         Parser parser;
-        parser.syntactic_analysis(result);
-        // std::reverse(result.begin(),result.end());
-        // for(auto & v: result)
-        //     std::cout << v["cmd"] << std::endl;
+        parser.run(result);
+
         Executor executor;
         executor.run(result);
     } catch (std::exception &e) {

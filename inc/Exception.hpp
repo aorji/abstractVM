@@ -14,7 +14,7 @@ public:
     DivisionByZero( DivisionByZero const & src );
     ~DivisionByZero( ) throw();
     DivisionByZero & operator=( DivisionByZero const & rhs);
-    const char* what() const throw();
+    const char* what() const throw() override;
 
 private:
     std::string rhs_;
@@ -27,7 +27,7 @@ public:
     LexerError( LexerError const & src );
     ~LexerError( ) throw();
     LexerError & operator=( LexerError const & rhs);
-    const char* what() const throw();
+    const char* what() const throw() override;
 
 private:
     std::string error_line;
@@ -39,7 +39,7 @@ public:
     RangeError( RangeError const & src );
     ~RangeError( ) throw();
     RangeError & operator=( RangeError const & rhs);
-    const char* what() const throw();
+    const char* what() const throw() override;
 
 private:
     std::string error_line;
@@ -51,7 +51,7 @@ public:
     StackError( StackError const & src );
     ~StackError( ) throw();
     StackError & operator=( StackError const & rhs);
-    const char* what() const throw();
+    const char* what() const throw() override;
 
 private:
     std::string error_line;

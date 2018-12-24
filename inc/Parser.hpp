@@ -19,7 +19,7 @@ public:
     Parser();
     ~Parser();
 
-    void syntactic_analysis(std::vector<std::map<std::string, std::string>> data);
+    void run(std::vector<std::map<std::string, std::string>> data);
     void check_int8( std::string value );
     void check_int16( std::string value );
     void check_int32( std::string value );

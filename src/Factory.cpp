@@ -13,7 +13,7 @@ Factory::Factory() {
     creator.push_back(&Factory::createDouble);  //type 4
 }
 
-Factory::~Factory() {}
+Factory::~Factory() = default;
 
 IOperand const * 
 Factory::createOperand( eOperandType type, std::string const & value ) const {

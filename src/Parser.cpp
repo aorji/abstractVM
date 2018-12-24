@@ -12,10 +12,10 @@ Parser::Parser() {
     checker.push_back(&Parser::check_double); //at(4)
 }
 
-Parser::~Parser() {}
+Parser::~Parser() = default;
 
 void
-Parser::syntactic_analysis(std::vector<std::map<std::string, std::string>> data) {
+Parser::run(std::vector<std::map<std::string, std::string>> data) {
     for (auto &v: data) {
         if (v["cmd"] == "push" || v["cmd"] == "assert") {
             if (v["type"] == "int8")

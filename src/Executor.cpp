@@ -5,50 +5,30 @@
 #include "../inc/Executor.hpp"
 
 Executor::Executor(): exit_(false) {
-	cmd.push_back(&Executor::pop);
-	cmd.push_back(&Executor::dump);
-	cmd.push_back(&Executor::add);
-	cmd.push_back(&Executor::sub);
-	cmd.push_back(&Executor::mul);
-	cmd.push_back(&Executor::div);
-	cmd.push_back(&Executor::mod);
-	cmd.push_back(&Executor::print);
-	cmd.push_back(&Executor::exit);
-	// cmd.push_back(&Executor::push);
-	// cmd.push_back(&Executor::assert);
+	instruction["pop"] = &Executor::pop;
+    instruction["dump"] = &Executor::dump;
+	instruction["add"] = &Executor::add;
+	instruction["sub"] = &Executor::sub;
+	instruction["mul"] = &Executor::mul;
+	instruction["div"] = &Executor::div;
+	instruction["mod"] = &Executor::mod;
+	instruction["print"] = &Executor::print;
+	instruction["exit"] = &Executor::exit;
 }
 
-Executor::~Executor() {}
+Executor::~Executor() = default;
 
 void
 Executor::run(std::vector<std::map<std::string, std::string>> data) {
 	for(auto & v: data){
 		if (exit_)
 			break;
-		if (v["cmd"] == "pop")
-			(this->*cmd.at(0))();
-		else if (v["cmd"] == "dump")
-			(this->*cmd.at(1))();
-		else if (v["cmd"] == "add")
-			(this->*cmd.at(2))();
-		else if (v["cmd"] == "sub")
-			(this->*cmd.at(3))();
-		else if (v["cmd"] == "mul")
-			(this->*cmd.at(4))();
-		else if (v["cmd"] == "div")
-			(this->*cmd.at(5))();
-		else if (v["cmd"] == "mod")
-			(this->*cmd.at(6))();
-		else if (v["cmd"] == "print")
-			(this->*cmd.at(7))();
-		else if (v["cmd"] == "exit")
-			(this->*cmd.at(8))();
-		else if (v["cmd"] == "push")
-			push( v["type"], v["value"] );
-		// 	(this->*cmd.at(9))(v["type"], v["value"]);
+		if (v["cmd"] != "push" && v["cmd"] != "assert" && v["cmd"] != "")
+			(this->*instruction[v["cmd"]])();
+		if (v["cmd"] == "push")
+		 	push(v["type"], v["value"]);
 		else if (v["cmd"] == "assert")
 			assert( v["value"] );
-		// 	(this->*cmd.at(10))(v["value"]);
 	}
 	if (!exit_)
 		throw StackError("no exit instruction");
@@ -63,7 +43,7 @@ Executor::pop( ) {
 
 void
 Executor::dump( ) {
-   for(std::vector<IOperand const *>::reverse_iterator it = stack.rbegin(); it != stack.rend(); ++it)
+   for(auto it = stack.rbegin(); it != stack.rend(); ++it)
     	std::cout << (*it)->toString() << std::endl;
 }
 

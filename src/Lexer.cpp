@@ -15,6 +15,8 @@ Lexer::Lexer(int ac, char **av):ac_(ac), av_(av) {
     reader.push_back(&Lexer::read_from_file);    // at(1)
 }
 
+Lexer::~Lexer() = default;
+
 void
 Lexer::run() {
     return !(ac_ - 1) ? (this->*reader.at(0))() : (this->*reader.at(1))();
