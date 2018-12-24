@@ -70,7 +70,7 @@ Lexer::read_from_file() {
         std::ifstream ifs(av_[i]);
         while (std::getline(ifs, line)) {
             if (!regular_ex_match(line))
-                throw LexerError(line);
+                throw LexerError("Error: " + line);
             if (line == "exit")
                 break;
         }
