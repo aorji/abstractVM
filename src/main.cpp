@@ -26,12 +26,13 @@ int main(int ac, char **av) {
         ac == 1 ? parser.run(result, ac) : parser.run(result, ac - 1);
 
         Executor executor;
+
         auto it = result.begin();
-        if (ac == 1)
-            executor.run(it);
-        for (int i = 1; i < ac; ++i) {
+
+        do {
             it = executor.run(it);
-        }
+        } while (--ac > 1);
+
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
