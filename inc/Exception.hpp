@@ -65,4 +65,16 @@ private:
     std::string error_line;
 };
 
+class FileAccess: public std::exception {
+public:
+    explicit FileAccess( char *error );
+    FileAccess( FileAccess const & src );
+    ~FileAccess( ) throw();
+    FileAccess & operator=( FileAccess const & rhs);
+    const char* what() const throw() override;
+
+private:
+    std::string error_line;
+};
+
 #endif

@@ -28,7 +28,7 @@ public:
     Parser( Parser const & src );
     ~Parser();
 
-    void run(std::vector<std::map<std::string, std::string>> data);
+    void run(std::vector<std::map<std::string, std::string>> data, int file_number);
     void check_int8( std::string value );
     void check_int16( std::string value );
     void check_int32( std::string value );
@@ -38,6 +38,7 @@ public:
     Parser & operator=( Parser const & rhs);
 private:
     std::map<std::string, void (Parser::*)( std::string )> checker;
+    int exit_count;
 };
 
 #endif

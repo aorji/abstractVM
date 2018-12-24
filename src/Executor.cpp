@@ -28,20 +28,21 @@ Executor::~Executor() = default;
 
 Executor::Executor ( Executor const & src ) { *this = src; }
 
-void
-Executor::run(std::vector<std::map<std::string, std::string>> data) {
-	for(auto & v: data){
-		if (exit_)
-			break;
-		if (v["cmd"] != "push" && v["cmd"] != "assert" && v["cmd"] != "")
-			(this->*instruction[v["cmd"]])();
-		if (v["cmd"] == "push")
-		 	push(v["type"], v["value"]);
-		else if (v["cmd"] == "assert")
-			assert( v["value"] );
+std::vector<std::map<std::string, std::string>>::iterator
+Executor::run(std::vector<std::map<std::string, std::string>>::iterator it) {
+    while (1){
+		if ((*it)["cmd"] == "exit"){
+		    reset();
+			return ++it;
+		}
+		if ((*it)["cmd"] != "push" && (*it)["cmd"] != "assert" && !(*it)["cmd"].empty())
+			(this->*instruction[(*it)["cmd"]])();
+		if ((*it)["cmd"] == "push")
+		 	push((*it)["type"], (*it)["value"]);
+		else if ((*it)["cmd"] == "assert")
+			assert( (*it)["value"] );
+		++it;
 	}
-	if (!exit_)
-		throw StackError("Error: no exit instruction");
 }
 
 void
@@ -147,6 +148,12 @@ void
 Executor::assert( std::string value ) {
 	if (value != stack.back()->toString())
 		throw StackError("Assert error: " + value + " != " + stack.back()->toString());
+}
+
+void
+Executor::reset(){
+    stack.clear();
+    exit_ = false;
 }
 
 Executor &

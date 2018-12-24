@@ -66,3 +66,18 @@ const char *
 StackError::what() const throw() {
     return error_line.c_str();
 }
+
+FileAccess::FileAccess ( char* error ): error_line(error) {}
+FileAccess::FileAccess ( FileAccess const & src ) { *this = src; }
+FileAccess::~FileAccess ( ) throw() {}
+FileAccess &
+FileAccess::operator=( FileAccess const & rhs) {
+    (void)rhs;
+    return *this;
+}
+const char *
+FileAccess::what() const throw() {
+    std::string access_line = "Bad file access: ";
+    access_line += error_line;
+    return access_line.c_str();
+}

@@ -23,10 +23,15 @@ int main(int ac, char **av) {
         std::vector<std::map<std::string, std::string>> result = lexer.getReadValue();
 
         Parser parser;
-        parser.run(result);
+        ac == 1 ? parser.run(result, ac) : parser.run(result, ac - 1);
 
         Executor executor;
-        executor.run(result);
+        auto it = result.begin();
+        if (ac == 1)
+            executor.run(it);
+        for (int i = 1; i < ac; ++i) {
+            it = executor.run(it);
+        }
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }

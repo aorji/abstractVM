@@ -30,7 +30,10 @@ public:
    void push( std::string type, std::string value );
    void assert( std::string value);
 
-   void run( std::vector<std::map<std::string, std::string>> data);
+   void reset();
+
+    std::vector<std::map<std::string, std::string>>::iterator
+    run( std::vector<std::map<std::string, std::string>>::iterator it );
 
 	Executor & operator=( Executor const & rhs);
 private:

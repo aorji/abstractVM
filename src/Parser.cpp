@@ -13,6 +13,7 @@
 #include "../inc/Parser.hpp"
 
 Parser::Parser() {
+    exit_count = 0;
     checker["int8"] = &Parser::check_int8;
     checker["int16"] = &Parser::check_int16;
     checker["int32"] = &Parser::check_int32;
@@ -25,10 +26,15 @@ Parser::Parser ( Parser const & src ) { *this = src; }
 Parser::~Parser() = default;
 
 void
-Parser::run(std::vector<std::map<std::string, std::string>> data) {
-    for (auto &v: data)
+Parser::run(std::vector<std::map<std::string, std::string>> data, int file_number) {
+    for (auto &v: data) {
         if (v["cmd"] == "push" || v["cmd"] == "assert")
             (this->*checker[v["type"]])(v["value"]);
+        if (v["cmd"] == "exit")
+            exit_count++;
+    }
+    if (exit_count < file_number)
+        throw StackError("Error: no exit instruction");
 }
 
 void
