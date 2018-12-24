@@ -1,9 +1,18 @@
-//
-// Created by Anastasiia ORJI on 13/12/2018.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Exception.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aorji <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/24 10:47:28 by aorji             #+#    #+#             */
+/*   Updated: 2018/12/24 10:49:40 by aorji            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../inc/Exception.hpp"
 #include <iostream>
+
 DivisionByZero::DivisionByZero ( std::string lhs, std::string rhs ): rhs_(rhs), lhs_(lhs) {}
 DivisionByZero::DivisionByZero ( DivisionByZero const & src ) { *this = src; }
 DivisionByZero::~DivisionByZero ( ) throw() {}

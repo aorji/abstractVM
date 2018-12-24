@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/aorji/Desktop/1/inc 
+CXX_INCLUDES = -I/Users/aorji/Desktop/abstractVM/inc 
 
