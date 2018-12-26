@@ -40,7 +40,7 @@ Executor::run(std::vector<std::map<std::string, std::string>>::iterator it) {
 		if ((*it)["cmd"] == "push")
 		 	push((*it)["type"], (*it)["value"]);
 		else if ((*it)["cmd"] == "assert")
-			assert( (*it)["value"] );
+			assert((*it)["type"], (*it)["value"]);
 		++it;
 	}
 }
@@ -49,7 +49,9 @@ void
 Executor::pop( ) {
    if (stack.empty())
        throw StackError("Error: empty stack");
+   IOperand const *a = stack.back();
    stack.pop_back();
+   delete a;
 }
 
 void
@@ -60,57 +62,77 @@ Executor::dump( ) {
 
 void
 Executor::add( ) {
-	if (stack.size() < 2)
+	if (stack.size() < 2) {
+        reset();
 		throw StackError("Error: missing operand");
+	}
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
 	stack.push_back(*a + *b);
+	delete a;
+    delete b;
 }
 
 void
 Executor::sub( ) {
-	if (stack.size() < 2)
+	if (stack.size() < 2) {
+        reset();
 		throw StackError("Error: missing operand");
+	}
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
 	stack.push_back(*b - *a);
+    delete a;
+    delete b;
 }
 
 void
 Executor::mul( ) {
-	if (stack.size() < 2)
+	if (stack.size() < 2) {
+        reset();
 		throw StackError("Error: missing operand");
+	}
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
 	stack.push_back(*a * *b);
+    delete a;
+    delete b;
 }
 
 void
 Executor::div( ) {
-	if (stack.size() < 2)
+	if (stack.size() < 2) {
+        reset();
 		throw StackError("Error: missing operand");
+	}
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
 	stack.push_back(*b / *a);
+    delete a;
+    delete b;
 }
 
 void
 Executor::mod( ) {
-	if (stack.size() < 2)
+	if (stack.size() < 2) {
+        reset();
 		throw StackError("Error: empty stack");
+	}
 	IOperand const *a = stack.back();
 	pop();
 	IOperand const *b = stack.back();
 	pop();
 	stack.push_back(*b % *a);
+    delete a;
+    delete b;
 }
 
 void
@@ -118,10 +140,17 @@ Executor::print( ) {
 	IOperand const *a = stack.back();
 	if (a->getType() == 0) {
 		char c = stoi(a->toString());
-		std::cout << c << std::endl;
+		if (c >= 32 && c <= 126)
+		    std::cout << c << std::endl;
+		else {
+            reset();
+            throw StackError("Print error: " + a->toString() + " is not printable");
+		}
 	}
-	else
+	else {
+        reset();
 		throw StackError("Print error: " + a->toString() + " is not int8");
+	}
 }
 
 void
@@ -145,14 +174,29 @@ Executor::push( std::string type, std::string value ) {
 }
 
 void
-Executor::assert( std::string value ) {
-	if (value != stack.back()->toString())
-		throw StackError("Assert error: " + value + " != " + stack.back()->toString());
+Executor::assert( std::string type, std::string value ) {
+	eOperandType e_type = Int8;
+	if (type == "int16")
+		e_type = Int16;
+	else if (type == "int32")
+		e_type = Int32;
+	else if (type == "float")
+		e_type = Float;
+	else if (type == "double")
+		e_type = Double;
+	if (value != stack.back()->toString() || e_type != stack.back()->getType()) {
+	    reset();
+		throw StackError("Assert error!");
+	}
 }
 
 void
 Executor::reset(){
-    stack.clear();
+    while(!stack.empty()) {
+        IOperand const *a = stack.back();
+        stack.pop_back();
+        delete a;
+    }
     exit_ = false;
 }
 

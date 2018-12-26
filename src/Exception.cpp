@@ -77,7 +77,6 @@ FileAccess::operator=( FileAccess const & rhs) {
 }
 const char *
 FileAccess::what() const throw() {
-    std::string access_line = "Bad file access: ";
-    access_line += error_line;
-    return access_line.c_str();
+    const char *access_line = "Bad file access";
+    return access_line;
 }

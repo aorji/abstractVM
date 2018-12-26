@@ -28,7 +28,7 @@ public:
    void print( );
    void exit( );
    void push( std::string type, std::string value );
-   void assert( std::string value);
+   void assert( std::string type, std::string value );
 
    void reset();
 

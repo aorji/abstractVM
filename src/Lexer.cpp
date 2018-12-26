@@ -14,9 +14,9 @@
 #include "../inc/Lexer.hpp"
 
 Lexer::Lexer(int ac, char **av):ac_(ac), av_(av) {
-    instr_with_no_value = (R"(^(pop|dump|add|sub|mul|div|mod|print|exit)(\s*[;].*)*)");
-    instr_with_int_value = (R"(^(push|assert)\s+(int8|int16|int32)(\()([\-]?\d+)(\))(\s*[;].*)*)");
-    instr_with_fd_value = (R"(^(push|assert)\s+(float|double)(\()([\-]?\d+\.\d+)(\))(\s*[;].*)*)");
+    instr_with_no_value = (R"(^(pop|dump|add|sub|mul|div|mod|print|exit)\s*([;].*)*)");
+    instr_with_int_value = (R"(^(push|assert)\s+(int8|int16|int32)(\()([\-]?\d+)(\))\s*([;].*)*)");
+    instr_with_fd_value = (R"(^(push|assert)\s+(float|double)(\()([\-]?\d+\.\d+)(\))\s*([;].*)*)");
     comment = (R"(\s*[;].*)");
     empty_line = (R"(^$)");
     reader.push_back(&Lexer::read_from_st_input);    // at(0)
@@ -78,6 +78,7 @@ Lexer::read_from_file() {
 
 bool
 Lexer::check_file_access(char *path) {
+    std::cout << "Processing the " << path << std::endl;
     return (!access(path, 0) && !access(path, 04));
 }
 
